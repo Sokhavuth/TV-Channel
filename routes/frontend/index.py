@@ -8,3 +8,4 @@ app = Bottle()
 @app.get('/')
 def index():
     return template('base')
+    
