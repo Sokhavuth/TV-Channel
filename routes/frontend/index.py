@@ -1,16 +1,14 @@
 # routes/frontend/index.py
 
+import config, copy
 from bottle import Bottle, template, get, request
-from copy import deepcopy
 
 
-appIndex = Bottle()
-
-@appIndex.get('/')
-def indexHandler():
-    config = request.app.config["myapp.config"]
-    settings = deepcopy(config["settings"])
+app = Bottle()
+@app.get('/')
+def home():
+    settings = copy.deepcopy(config.settings)
     setup = settings()
     setup["message"] = "Hello World!"
-
+    setup["route"] = "/"
     return template('base', data=setup)

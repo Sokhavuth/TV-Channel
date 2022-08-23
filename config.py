@@ -9,6 +9,8 @@ def settings():
     setup = {
         "siteTitle": "TV Channel",
         "pageTitle": "",
+        "message": "",
+        "pageTitle": "Home Page",
     }
 
     return setup

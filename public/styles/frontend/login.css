@@ -1,0 +1,35 @@
+/* public/styles/frontend/login.css */
+
+.Login .outer{
+    margin-top: 100px;
+    width: 400px;
+    background-color: var(--background);
+}
+
+.Login .outer .title{
+    text-align: center;
+    border-bottom: 1px solid var(--background-light);
+    font: 25px/1.5 BlackOpsOne;
+}
+
+.Login .outer form{
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-gap: 5px;
+    padding: 20px;
+    align-items: center;
+}
+
+.Login .outer form input{
+    font: var(--body-font);
+    padding: 1px 5px;
+}
+
+.Login .outer form a{
+    text-align: right;
+    color: white;
+}
+
+.Login .outer form .message{
+    text-align: center;
+}
