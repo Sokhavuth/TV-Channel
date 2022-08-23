@@ -2,9 +2,11 @@
 
 from bottle import static_file, get
 from routes.frontend import index
+import config
 
 
-app = index.app
+app = index.appIndex
+app.config["myapp.config"] = config.configure
 
 @app.get('/static/<filepath:path>')
 def staticFile(filepath):
