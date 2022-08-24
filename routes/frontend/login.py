@@ -9,14 +9,13 @@ login = Login()
 
 @app.get("/")
 def getLogin():
-    if(login.checkLogged()):
-        return redirect("/admin/post")
-    else:
-        return login.getPage()
+    #if(login.checkLogged()):
+        #return redirect("/admin/post")
+    #else:
+    return login.getPage()
 
 
 @app.post("/")
 def postLogin():
     return login.postItem()
-        
         
