@@ -33,5 +33,3 @@ class User:
     def checkUser(self, email):
         return self.db["users"].find_one({ 'email': email })
 
-
-
