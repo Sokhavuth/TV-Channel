@@ -23,8 +23,19 @@ secret_key = os.getenv("SECRET_KEY")
 
 
 import pymongo
+from pymongo.errors import ConnectionFailure
 client = pymongo.MongoClient(os.getenv("DATABASE_URI"))
 db = client[os.getenv("DB_NAME")]
+
+def conndb():
+    global client, db
+    try:
+        client.admin.command('ping')
+        return db
+    except ConnectionFailure :
+        client = pymongo.MongoClient(os.getenv("DATABASE_URI"))
+        db = client[os.getenv("DB_NAME")]
+        return db
 
 
 import redis
