@@ -1,6 +1,6 @@
 # config.py
 # pip install python-dotenv
-# pip install PyJWT
+# pip install pyjwt
 # pip install pymongo
 # pip install redis
 
