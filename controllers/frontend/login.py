@@ -26,7 +26,7 @@ class Login:
         sessionid = request.get_cookie('sessionid', secret=self.secret_key)
         print(sessionid)
         print("test")
-        encoded_jwt = self.redis.get(sessionid) 
+        encoded_jwt = self.redis.get(request.get_cookie('sessionid', secret=self.secret_key)) 
         #print(encoded_jwt)
         try:
             payload = jwt.decode(encoded_jwt, self.secret_key, algorithms=["HS256"])
