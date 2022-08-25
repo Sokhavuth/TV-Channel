@@ -27,7 +27,7 @@ class Login:
         encoded_jwt = self.redis.get(sessionid) 
         try:
             payload = jwt.decode(encoded_jwt, self.secret_key, algorithms=["HS256"])
-            if(payload["userid"]):
+            if(payload["user"]):
                 return True
         except jwt.ExpiredSignatureError:
             return False
@@ -46,10 +46,11 @@ class Login:
 
                 payload = {"userid": user["id"], "role": user["role"]}
                 exp = datetime.now(timezone.utc) + timedelta(seconds=60*60*24*15)
-
+                print(timedelta(seconds=60*60*24*15))
                 myjwt = jwt.encode({"user": payload, "exp": exp }, self.secret_key, algorithm="HS256")
                 sessionid = uuid.uuid4().hex
-                self.redis.set(str(sessionid), myjwt, {"ex": datetime.timedelta(seconds=60*60*24*15)})
+                self.redis.set(str(sessionid), myjwt)
+                self.redis.expire(str(sessionid), 60*60*24*15)
                 response.set_cookie('sessionid', str(sessionid), path='/', secret=self.secret_key)
 
                 return redirect('/admin/post')
