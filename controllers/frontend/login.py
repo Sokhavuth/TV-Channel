@@ -47,7 +47,7 @@ class Login:
                 payload = {"userid": user["id"], "role": user["role"]}
                 exp = datetime.now(timezone.utc) + timedelta(seconds=60*60*24*15)
 
-                myjwt = jwt.encode(payload, { "exp": exp }, self.secret_key, algorithm="HS256")
+                myjwt = jwt.encode({"user": payload, "exp": exp }, self.secret_key, algorithm="HS256")
                 sessionid = uuid.uuid4().hex
                 self.redis.set(str(sessionid), myjwt, {"ex": 60*60*24*15})
                 response.set_cookie('sessionid', str(sessionid), path='/', secret=self.secret_key)
