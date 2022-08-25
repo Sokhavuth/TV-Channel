@@ -23,9 +23,11 @@ class Login:
 
 
     def checkLogged(self):
-        encoded_jwt = request.get_cookie('myjwt', secret=self.secret_key)
-        print(encoded_jwt)
+        sessionid = request.get_cookie('sessionid', secret=self.secret_key)
+        print(sessionid)
         print("test")
+        encoded_jwt = self.redis.get(sessionid) 
+        #print(encoded_jwt)
         try:
             payload = jwt.decode(encoded_jwt, self.secret_key, algorithms=["HS256"])
             if(payload["user"]):
@@ -47,9 +49,12 @@ class Login:
 
                 payload = {"userid": user["id"], "role": user["role"]}
                 exp = datetime.now(timezone.utc) + timedelta(seconds=60*60*24*15)
-                print(timedelta(seconds=60*60*24*15))
+                
                 myjwt = jwt.encode({"user": payload, "exp": exp }, self.secret_key, algorithm="HS256")
-                response.set_cookie('myjwt', myjwt, path='/', secret=self.secret_key)
+                sessionid = uuid.uuid4().hex
+                self.redis.set(sessionid, myjwt)
+                self.redis.expire(sessionid, 60*60*24*15)
+                response.set_cookie('sessionid', sessionid, path='/', secret=self.secret_key)
 
                 return redirect('/admin/post')
             else:
