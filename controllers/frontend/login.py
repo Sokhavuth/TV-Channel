@@ -1,7 +1,7 @@
 # controllers/frontend/login.py
 
 import config, copy, hashlib, jwt, uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from bottle import template, request, response, redirect
 from models.user import User
 
@@ -45,7 +45,7 @@ class Login:
                 self.setup["pageTitle"] = 'Post Page'
 
                 payload = {"userid": user["id"], "role": user["role"]}
-                exp = datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(seconds=60*60*24*15)
+                exp = datetime.now(timezone.utc) + datetime.timedelta(seconds=60*60*24*15)
 
                 myjwt = jwt.encode(payload, { "exp": exp }, self.secret_key, algorithm="HS256")
                 sessionid = uuid.uuid4().hex
