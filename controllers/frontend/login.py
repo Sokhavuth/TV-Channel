@@ -25,6 +25,7 @@ class Login:
     def checkLogged(self):
         sessionid = request.get_cookie('sessionid', secret=self.secret_key)
         print(sessionid)
+        print("test")
         encoded_jwt = self.redis.get(sessionid) 
         #print(encoded_jwt)
         try:
