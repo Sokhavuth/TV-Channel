@@ -24,12 +24,15 @@ class Login:
 
     def checkLogged(self):
         sessionid = request.get_cookie('sessionid', secret=self.secret_key)
-        encoded_jwt = self.redis.get(sessionid) 
-        try:
-            payload = jwt.decode(encoded_jwt, self.secret_key, algorithms=["HS256"])
-            if(payload["user"]):
-                return True
-        except jwt.ExpiredSignatureError:
+        if(sessionid):
+            myjwt = self.redis.get(sessionid) 
+            try:
+                payload = jwt.decode(myjwt, self.secret_key, algorithms=["HS256"])
+                if(payload["user"]):
+                    return True
+            except:
+                return False
+        else:
             return False
 
 

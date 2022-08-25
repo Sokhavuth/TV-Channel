@@ -3,10 +3,12 @@
 from bottle import static_file, get
 from routes.frontend import index
 from routes.frontend import login
+from routes.backend import admin
 
 
 app = index.app
-app.mount('/login', login.app)
+app.mount("/login", login.app)
+app.mount("/admin", admin.app)
 
 @app.get('/static/<filepath:path>')
 def staticFile(filepath):
