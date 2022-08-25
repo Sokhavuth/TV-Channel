@@ -49,8 +49,8 @@ class Login:
 
                 myjwt = jwt.encode(payload, { "exp": exp }, self.secret_key, algorithm="HS256")
                 sessionid = uuid.uuid4().hex
-                self.redis.set(sessionid, myjwt, {"ex": 60*60*24*15})
-                response.set_cookie('sessionid', sessionid, path='/', secret=self.secret_key)
+                self.redis.set(str(sessionid), myjwt, {"ex": 60*60*24*15})
+                response.set_cookie('sessionid', str(sessionid), path='/', secret=self.secret_key)
 
                 return redirect('/admin/post')
             else:
