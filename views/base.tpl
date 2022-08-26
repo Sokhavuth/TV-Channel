@@ -14,9 +14,9 @@
     <body>
         <%  
         if(data["route"] == "/login"):
-            include('./frontend/login.tpl')
+            include('frontend/login.tpl')
         elif("/admin" in data["route"]):
-            include("./backend/index.tpl")
+            include("backend/index.tpl")
         end
         %>
     </body>

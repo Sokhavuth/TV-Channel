@@ -1,0 +1,46 @@
+/* public/styles/backend/post.css */
+
+.Post form .ck-editor__editable{
+    min-height: 300px;
+    color: black;
+}
+
+.Post input, .Post select{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+
+.Post input{
+    width: 100%;
+}
+
+.Post form .wrapper, 
+.Post .video-wrapper,
+.Post .viddata div{
+    display: grid;
+    grid-template-columns: 20% 40% auto 15%;
+}
+
+.Post .viddata div{
+    width: 100%;
+}
+
+.Post .viddata div p:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.Post .viddata b,
+.Post .viddata input,
+.Post .viddata p{
+    font: var(--body-font);
+    padding: 3px 5px;
+    background: rgb(208, 216, 228);
+    border: 1px solid grey;
+    text-align: center;
+    color: black;
+}
+
+.Post .viddata input{
+    background: white;
+}

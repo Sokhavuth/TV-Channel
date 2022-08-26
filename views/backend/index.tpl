@@ -40,7 +40,13 @@
                 <a href="/admin/setting">Settings</a>
             </div>
         </div>
-        <div class="content">Content</div>
+        <div class="content">
+            <%
+            if("/post" in data["route"]):
+                include("backend/post.tpl")
+            end
+            %>
+        </div>
     </div>
 
     <div class="footer region">
