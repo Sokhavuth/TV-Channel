@@ -1,0 +1,98 @@
+/* public/styles/backend/index.css */
+
+.Index header{
+    background-color: var(--background);
+    margin-bottom: 20px;
+    border-bottom: 7px solid white;
+}
+
+.Index header .inner{
+    display: grid;
+    grid-template-columns: 25% auto 25%;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.Index header .inner .page-title{
+    font: 20px/1.5 Anton;
+}
+
+.Index header .inner form{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+}
+
+.Index header .inner form input,
+.Index header .inner form select{
+    font: var(--bordy-font);
+    padding: 1px 5px;
+}
+
+.Index header .inner .logout{
+    text-align: right;
+}
+
+.Index header .inner .logout a{
+    color: white;
+}
+
+.Index .main{
+    display: grid;
+    grid-template-columns: auto 75%;
+    grid-gap: 10px;
+}
+
+.Index .main .sidebar{
+    background-color: var(--background);
+    padding: 20px;
+}
+
+.Index .main .sidebar .inner{
+    display: grid;
+    grid-template-columns: 25% auto;
+    grid-gap: 15px;
+    align-items: center;
+}
+
+.Index .main .sidebar .inner img{
+    width: 100%;
+    float: left;
+}
+
+.Index .main .sidebar .inner a{
+    font: 18px/1.5 Oswald;
+    color: white;
+}
+
+.Index .footer{
+    padding: 10px 0 30px;
+}
+
+.Index .footer .info{
+    background-color: var(--background);
+    text-align: center;
+    padding: 5px 0;
+}
+
+.Index .footer ul{
+    margin: 10px 0;
+}
+
+.Index .footer .pagination{
+    background-color: var(--background);
+    text-align: center;
+}
+
+.Index .footer .pagination img{
+    padding-top: 5px;
+}
+
+.Index .footer .pagination img:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.Index .footer .credit{
+    padding-top: 30px;
+    text-align: center;
+}

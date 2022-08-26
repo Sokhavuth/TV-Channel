@@ -9,7 +9,7 @@ class Post:
 
 
     def getPage(self):
-        self.setup["pageTitle"] = "Post Page"
+        self.setup["pageTitle"] = "POST PAGE"
         self.setup["route"] = "/admin/post"
 
         return template("base", data=self.setup)

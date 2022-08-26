@@ -1,6 +1,6 @@
 # routes/backend/admin.py
 
-from bottle import Bottle, get
+from bottle import Bottle
 
 
 app = Bottle()

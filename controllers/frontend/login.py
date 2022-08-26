@@ -26,11 +26,14 @@ class Login:
         sessionid = request.get_cookie('sessionid', secret=self.secret_key)
         if(sessionid):
             myjwt = self.redis.get(sessionid) 
-            try:
-                payload = jwt.decode(myjwt, self.secret_key, algorithms=["HS256"])
-                if(payload["user"]):
-                    return True
-            except:
+            if(myjwt):
+                try:
+                    payload = jwt.decode(myjwt, self.secret_key, algorithms=["HS256"])
+                    if(payload["user"]):
+                        return True
+                except:
+                    return False
+            else:
                 return False
         else:
             return False
