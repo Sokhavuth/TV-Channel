@@ -10,7 +10,7 @@ post = Post()
 
 @app.get("/")
 def getPage():
-    #if(config.checkLogged()):
-        #return post.getPage()
-    #else:
-    redirect("/login")
+    if(config.checkLogged()):
+        return post.getPage()
+    else:
+        redirect("/login")
