@@ -12,7 +12,7 @@ class Post:
         self.setup["pageTitle"] = "POST PAGE"
         self.setup["route"] = "/admin/post"
         user = config.checkLogged()
-        if(user["name"]):
+        if("name" in user):
             self.setup["username"] = user["name"]
 
         return template("base", data=self.setup)
