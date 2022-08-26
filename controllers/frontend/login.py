@@ -59,3 +59,11 @@ class Login:
             self.setup['route'] = '/login'
             return template("base", data=self.setup)
 
+
+    def logOut(self):
+        sessionid = request.get_cookie('sessionid', secret=self.secret_key)
+        if(sessionid):
+            self.redis.delete(sessionid)
+            response.delete_cookie("sessionid", path="/", secret=self.secret_key)
+            return redirect("/login")
+

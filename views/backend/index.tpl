@@ -51,7 +51,7 @@
         </div>
 
         <div class="credit">
-            <a href="https://khmerweb.vercel.app/">&copy: Khmer Web 2022</a>
+            <a href="https://khmerweb.vercel.app/">&copy Khmer Web 2022</a>
         </div>
     </div>
 </section>

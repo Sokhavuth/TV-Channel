@@ -18,4 +18,12 @@ def getLogin():
 @app.post("/")
 def postLogin():
     return login.postItem()
+
+
+@app.get("/logout")
+def logout():
+    if(config.checkLogged()):
+        return login.logOut()
+    else:
+       return redirect("/login") 
         
