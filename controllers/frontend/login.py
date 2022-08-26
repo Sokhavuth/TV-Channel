@@ -22,23 +22,6 @@ class Login:
         return template("base", data=self.setup)
 
 
-    def checkLogged(self):
-        sessionid = request.get_cookie('sessionid', secret=self.secret_key)
-        if(sessionid):
-            myjwt = self.redis.get(sessionid) 
-            if(myjwt):
-                try:
-                    payload = jwt.decode(myjwt, self.secret_key, algorithms=["HS256"])
-                    if(payload["user"]):
-                        return True
-                except:
-                    return False
-            else:
-                return False
-        else:
-            return False
-
-
     def postItem(self):
         password = request.forms.getunicode('password')
         email = request.forms.getunicode('email')
@@ -50,7 +33,12 @@ class Login:
             if(passw == user["password"]):
                 self.setup["pageTitle"] = 'Post Page'
 
-                payload = {"userid": user["id"], "role": user["role"]}
+                payload = {
+                    "id": user["id"],
+                    "role": user["role"],
+                    "name": user["title"],
+                }
+
                 exp = datetime.now(timezone.utc) + timedelta(seconds=60*60*24*15)
                 
                 myjwt = jwt.encode({"user": payload, "exp": exp }, self.secret_key, algorithm="HS256")

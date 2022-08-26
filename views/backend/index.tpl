@@ -15,7 +15,9 @@
                 <input type="text" name="q" required />
                 <input type="submit" value="Search" />
             </form>
-            <div class="logout"><a href="/">Home</a> | <a href="/login/logout">Logout</a></div>
+            <div class="logout">
+                {{ data["username"]}} | <a href="/">Home</a> | <a href="/login/logout">Logout</a>
+            </div>
         </div>
     </header>
 

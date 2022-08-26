@@ -2,14 +2,14 @@
 
 from bottle import Bottle, get, post, redirect
 from controllers.frontend.login import Login
-
+import config
 
 app = Bottle()
 login = Login()
 
 @app.get("/")
 def getLogin():
-    if(login.checkLogged()):
+    if(config.checkLogged()):
         return redirect("/admin/post")
     else:
         return login.getPage()

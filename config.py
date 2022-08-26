@@ -11,6 +11,7 @@ def settings():
         "pageTitle": "",
         "message": "",
         "pageTitle": "Home Page",
+        "username": "",
     }
 
     return setup
@@ -44,6 +45,20 @@ redis = redis.Redis(
     port = int(os.getenv("REDIS_PORT")), 
     password = os.getenv("REDIS_PASSWORD")
 )
+
+import jwt
+from bottle import request
+def checkLogged():
+        sessionid = request.get_cookie('sessionid', secret=secret_key)
+        if(sessionid):
+            myjwt = redis.get(sessionid) 
+            if(myjwt):
+                try:
+                    payload = jwt.decode(myjwt, secret_key, algorithms=["HS256"])
+                    if(payload["user"]):
+                        return payload["user"]
+                except:
+                    return False
 
 
 configure = { 

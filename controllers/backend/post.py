@@ -11,6 +11,9 @@ class Post:
     def getPage(self):
         self.setup["pageTitle"] = "POST PAGE"
         self.setup["route"] = "/admin/post"
+        user = config.checkLogged()
+        if(user):
+            self.setup["username"] = user["name"]
 
         return template("base", data=self.setup)
 
